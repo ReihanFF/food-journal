@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Navbar from '../components/Navbar';
 import LoginCard from '../components/LoginCard';
 
 const Login = () => {
@@ -8,11 +8,11 @@ const Login = () => {
   };
 
   return (
-    <Layout>
+    <Navbar>
       <div style={{ textAlign: 'center' }}>
         <LoginCard onLogin={handleLogin} />
       </div>
-    </Layout>
+    </Navbar>
   );
 };
 

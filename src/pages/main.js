@@ -1,13 +1,13 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Navbar from '../components/Navbar';
 import FoodList from '../components/FoodList';
 
 const Main = () => {
   return (
-    <Layout>
+    <Navbar>
       <div>Main Page</div>
       <FoodList />
-    </Layout>
+    </Navbar>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Layout = ({ children }) => {
+const Navbar = ({ children }) => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,4 +24,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default Navbar;
