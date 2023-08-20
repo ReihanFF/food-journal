@@ -16,7 +16,10 @@ useEffect(() => {
 
       const foodItemsArray = response.data.data;
 
-      setFoodItems(foodItemsArray);
+     // filter data yang punya gambar
+     const filteredFoodItems = foodItemsArray.filter((foodItem) => foodItem.imageUrl);
+
+     setFoodItems(filteredFoodItems);
     } catch (error) {
       console.error('Error fetching foods:', error);
     }
@@ -33,8 +36,11 @@ return (
       {foodItems.map((foodItem) => (
         <div className="col-md-4 mb-4" key={foodItem.id}>
           <div className="card">
+            <img src={foodItem.imageUrl} alt={foodItem.name} className="card-img-top" />
             <div className="card-body">
               <h5 className="card-title">{foodItem.name}</h5>
+              <p className="card-text">Likes: {foodItem.totalLikes}</p>
+              <p className="card-text">Rating: {foodItem.rating}</p>
             </div>
           </div>
         </div>

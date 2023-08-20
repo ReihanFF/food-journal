@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router'; // Import the useRouter hook
+import { useRouter } from 'next/router'; 
 import axios from 'axios';
 
 const LoginCard = () => {
-  const router = useRouter(); // Initialize the useRouter hook
+  const router = useRouter(); 
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +12,6 @@ const LoginCard = () => {
     e.preventDefault();
     
     try {
-      // Make an API request to the login endpoint
       const response = await axios.post(
         'https://api-bootcamp.do.dibimbing.id/api/v1/login',
         {
@@ -26,14 +25,11 @@ const LoginCard = () => {
         }
       );
 
-      // Assuming the API response contains a token or user data
       const { token } = response.data;
 
-      // Redirect to the main.js page after successful login
-      router.push('/main'); // Replace '/main' with the actual route of your main.js page
+      router.push('/main'); 
     } catch (error) {
       console.error('Login failed:', error);
-      // Handle login error here (show an error message, etc.)
     }
   };
 

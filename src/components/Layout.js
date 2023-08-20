@@ -12,6 +12,9 @@ const Layout = ({ children }) => {
           <li className="nav-item">
             <a className="nav-link" href="/login">Login</a>
           </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/profile">Profile</a>
+          </li>
         </ul>
       </nav>
       <div className="container mt-4">

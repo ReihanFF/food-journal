@@ -4,7 +4,6 @@ import LoginCard from '../components/LoginCard';
 
 const Login = () => {
   const handleLogin = (username, password) => {
-    // Perform login logic here
     console.log('Login attempt:', username, password);
   };
 
