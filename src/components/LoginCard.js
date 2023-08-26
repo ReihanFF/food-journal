@@ -5,7 +5,7 @@ import axios from 'axios';
 const LoginCard = () => {
   const router = useRouter(); 
 
-  const [username, setUsername] = useState('');
+  const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
@@ -15,7 +15,7 @@ const LoginCard = () => {
       const response = await axios.post(
         'https://api-bootcamp.do.dibimbing.id/api/v1/login',
         {
-          username,
+          email,
           password,
         },
         {
@@ -39,13 +39,13 @@ const LoginCard = () => {
         <h2 className="mb-3">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label">
+            <label htmlFor="email" className="form-label">
               Username
             </label>
             <input
               type="text"
-              id="username"
-              value={username}
+              id="email"
+              value={email}
               onChange={(e) => setUsername(e.target.value)}
               required
               className="form-control"
