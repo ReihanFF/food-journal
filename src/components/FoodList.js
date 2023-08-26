@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 
 const FoodList = () => {
   const [foodItems, setFoodItems] = useState([]);
+  const { authToken } = useAuth();
 
 useEffect(() => {
   async function fetchFoods() {
     try {
       const response = await axios.get('https://api-bootcamp.do.dibimbing.id/api/v1/foods', {
         headers: {
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlJlaWhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOiI0MDllNGIwMC03NWE2LTRmNTctOGZhYy02YTRiNmZjMjdlNDIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTIzNTM3OTR9.37ojlhoI3e3AwFmFV9AhqxjrNpPEVD6eSMLlFlaTGTg',
+          Authorization: `Bearer ${authToken}`,
           apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
         },
       });
