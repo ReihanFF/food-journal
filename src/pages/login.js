@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import LoginCard from '../components/LoginCard';
 
+
 const Login = () => {
   const handleLogin = (username, password) => {
     console.log('Login attempt:', username, password);
