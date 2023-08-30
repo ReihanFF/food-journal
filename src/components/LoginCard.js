@@ -34,7 +34,7 @@ const LoginCard = () => {
       setAuthToken(token);
       console.log('Token:', token);
 
-      router.push('/profile');
+      router.push('/main');
     } catch (error) {
       setError('Login failed. Please check your credentials.');
     } finally {
