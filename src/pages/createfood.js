@@ -38,7 +38,7 @@ const CreateFood = () => {
       // Add headers for API key and auth token
       const headers = {
         Authorization: `Bearer ${authToken}`,
-        apiKey: 'w05KkI9AWhKxzvPFtXotUva-', // Replace with your actual API key
+        apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
       };
 
       // Make a POST request to the API to create a new food item
@@ -81,6 +81,9 @@ const CreateFood = () => {
         <div className="col-md-6">
           <div className="card shadow">
             <div className="card-body">
+            <div className="text-center mb-3">
+      <img src="/logo.jpg" alt="Logo" width="100" height="100" />
+        </div>
               <h2 className="card-title">Create Food</h2>
 
               {/* Display success message */}

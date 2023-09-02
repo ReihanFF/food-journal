@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link'; // Import Link from Next.js
+import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 
@@ -11,6 +11,7 @@ const LoginCard = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +47,9 @@ const LoginCard = () => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
       <div className="card p-3">
+      <div className="text-center mb-3">
+      <img src="/logo.jpg" alt="Logo" width="100" height="100" />
+        </div>
         <h2 className="mb-3">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">

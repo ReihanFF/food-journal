@@ -54,6 +54,9 @@ const RegisterPage = () => {
     <div className="container mt-4">
       <div className="card">
         <div className="card-body">
+        <div className="text-center mb-3">
+      <img src="/logo.jpg" alt="Logo" width="100" height="100" />
+        </div>
           <h2 className="card-title text-center mb-4">Registration</h2>
           {registrationSuccess && (
             <div className="alert alert-success" role="alert">

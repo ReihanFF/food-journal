@@ -10,11 +10,14 @@ const FoodList = () => {
   const { authToken } = useAuth();
   const router = useRouter();
   const { likedFoods, toggleLike } = useLikedFoods();
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  
 
   useEffect(() => {
     async function fetchFoods() {
+
       try {
-       
+        
         const response = await axios.get(
           'https://api-bootcamp.do.dibimbing.id/api/v1/foods',
           {
@@ -111,7 +114,7 @@ const FoodList = () => {
         {
           headers: {
             Authorization: `Bearer ${authToken}`,
-            apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
+            apiKey: apiKey,
           },
         }
       );

@@ -9,11 +9,10 @@ const Login = () => {
   };
 
   return (
-    <Navbar>
+
       <div style={{ textAlign: 'center' }}>
         <LoginCard onLogin={handleLogin} />
       </div>
-    </Navbar>
   );
 };
 

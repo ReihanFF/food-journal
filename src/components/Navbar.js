@@ -20,7 +20,7 @@ const Navbar = ({ children }) => {
     // Clear the token from local storage
     localStorage.removeItem('authToken');
 
-    setAuthToken(null);
+    // setAuthToken(null);
 
     router.push('/login');
   } catch (error) {
@@ -31,9 +31,6 @@ const Navbar = ({ children }) => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-dark">
-        <Link href="/" className="navbar-brand text-white">
-          Food Journal
-        </Link>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
             <li className={`nav-item ${router.pathname === '/main' ? 'active' : ''}`}>
