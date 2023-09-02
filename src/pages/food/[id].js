@@ -104,7 +104,7 @@ return (
         </Modal.Header>
         <Modal.Body>
           {foodReviews.map((review) => (
-            <div key={review.id} className="mb-3">
+           <div key={review.id} className="mb-3 border-bottom pb-3">
               <p>Rating: {review.rating}</p>
               <p>Review: {review.review}</p>
               <p>User: {review.user.name}</p>

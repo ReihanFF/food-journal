@@ -2,10 +2,31 @@ import React from 'react';
 import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const Navbar = ({ children }) => {
-  const { authToken } = useAuth();
+  const { authToken, setAuthToken } = useAuth();
   const router = useRouter();
+
+  const handleLogout = async () => {
+  try {
+    await axios.get('https://api-bootcamp.do.dibimbing.id/api/v1/logout', {
+      headers: {
+        apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
+
+    // Clear the token from local storage
+    localStorage.removeItem('authToken');
+
+    setAuthToken(null);
+
+    router.push('/login');
+  } catch (error) {
+    console.error('Error logging out:', error);
+  }
+};
 
   return (
     <div>
@@ -27,7 +48,11 @@ const Navbar = ({ children }) => {
                 <li className={`nav-item ${router.pathname === '/profile' ? 'active' : ''}`}>
                   <Link href="/profile" className="nav-link text-white">Profile</Link>
                 </li>
-                {/* Add a logout link or button here */}
+                <li className="nav-item">
+                  <button className="btn btn-link text-white" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
               </>
             )}
           </ul>

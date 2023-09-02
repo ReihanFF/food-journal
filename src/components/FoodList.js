@@ -3,28 +3,27 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import Link from 'next/link';
-
+import { useLikedFoods } from '../context/LikedFoodsContext';
 
 const FoodList = () => {
   const [foodItems, setFoodItems] = useState([]);
   const { authToken } = useAuth();
   const router = useRouter();
+  const { likedFoods, toggleLike } = useLikedFoods();
 
- useEffect(() => {
+  useEffect(() => {
     async function fetchFoods() {
       try {
-        if (!authToken) {
-          // Redirect to the login page if authToken is not available
-          router.push('/login');
-          return;
-        }
-
-        const response = await axios.get('https://api-bootcamp.do.dibimbing.id/api/v1/foods', {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-            apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
-          },
-        });
+       
+        const response = await axios.get(
+          'https://api-bootcamp.do.dibimbing.id/api/v1/foods',
+          {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+              apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
+            },
+          }
+        );
 
         const foodItemsArray = response.data.data;
 
@@ -34,13 +33,13 @@ const FoodList = () => {
             if (foodItem.imageUrl) {
               const image = new Image();
               image.src = foodItem.imageUrl;
-  
+
               return new Promise((resolve) => {
                 image.onload = () => {
                   // Image loaded successfully, include this food item
                   resolve(foodItem);
                 };
-  
+
                 image.onerror = () => {
                   // Image URL is broken or not accessible, exclude this food item
                   resolve(null);
@@ -52,23 +51,30 @@ const FoodList = () => {
             }
           })
         );
-  
+
         // Filter out null values (items with broken image URLs)
-        const validFoodItems = filteredFoodItems.filter((foodItem) => foodItem !== null);
-  
-        setFoodItems(validFoodItems);
+        const validFoodItems = filteredFoodItems.filter(
+          (foodItem) => foodItem !== null
+        );
+
+         // Initialize the "isLiked" property for each food item based on liked foods
+         const foodItemsWithLikes = validFoodItems.map((foodItem) => ({
+          ...foodItem,
+          isLiked: likedFoods.includes(foodItem.id),
+        }));
+
+        setFoodItems(foodItemsWithLikes);
       } catch (error) {
         console.error('Error fetching foods:', error);
       }
     }
-  
+
     fetchFoods();
-  }, [authToken]);
+  }, [authToken, likedFoods]);
 
   const handleCardClick = (foodId) => {
     router.push(`/food/${foodId}`); // Navigate to the food detail page
   };
-
 
   // Function to generate star icons based on the rating
   const generateStars = (rating) => {
@@ -89,32 +95,70 @@ const FoodList = () => {
     return stars;
   };
 
+  // Function to handle liking a food item
+  const handleLikeClick = async (foodId) => {
+    try {
+      const isLiked = likedFoods.includes(foodId);
+
+      // Make a POST request to the API to like or unlike the food item
+      const apiEndpoint = isLiked
+        ? 'https://api-bootcamp.do.dibimbing.id/api/v1/unlike'
+        : 'https://api-bootcamp.do.dibimbing.id/api/v1/like';
+
+      const response = await axios.post(
+        apiEndpoint,
+        { foodId },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+            apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
+          },
+        }
+      );
+
+      console.log('Like status updated successfully:', response.data);
+
+      // Update the liked status in the context provider
+      toggleLike(foodId);
+    } catch (error) {
+      console.error('Error updating like status:', error);
+    }
+  };
+
   return (
     <div className="container mt-4">
       <h2 className="text-center mb-4">Food List</h2>
       <div className="row">
         {foodItems.map((foodItem) => (
           <div className="col-md-4 mb-4" key={foodItem.id}>
-            <Link href={`/food/${foodItem.id}`}> {/* Use Link component for navigation */}
-              <div className="card h-100">
-                <img
-                  src={foodItem.imageUrl}
-                  alt={foodItem.name}
-                  className="card-img-top"
-                  style={{ objectFit: 'cover', height: '200px' }} // Adjust height as needed
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{foodItem.name}</h5>
-                  <p className="card-text">Likes: {foodItem.totalLikes}</p>
-                  <p className="card-text">Rating: {generateStars(foodItem.rating)}</p>
-                </div>
+            <div className="card h-100">
+              <img
+                src={foodItem.imageUrl}
+                alt={foodItem.name}
+                className="card-img-top"
+                style={{ objectFit: 'cover', height: '200px' }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">
+                  <Link href={`/food/${foodItem.id}`}>
+                    {foodItem.name}
+                  </Link>
+                </h5>
+                <p className="card-text">Likes: {foodItem.totalLikes}</p>
+                <p className="card-text">Rating: {generateStars(foodItem.rating)}</p>
+                <button
+                  className={`btn btn-${foodItem.isLiked ? 'danger' : 'primary'}`}
+                  onClick={() => handleLikeClick(foodItem.id, foodItem.isLiked)}
+                >
+                  {foodItem.isLiked ? 'Unlike' : 'Like'}
+                </button>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>
     </div>
   );
-        };  
+};
 
 export default FoodList;
