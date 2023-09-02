@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router'; 
+import { useRouter } from 'next/router';
+import Link from 'next/link'; // Import Link from Next.js
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 
@@ -49,7 +50,7 @@ const LoginCard = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
-              Username
+              E-mail
             </label>
             <input
               type="text"
@@ -84,6 +85,10 @@ const LoginCard = () => {
           >
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
+          <p className="mt-3">
+            Don't have an account?{' '}
+            <Link href="/register">Register here</Link>
+          </p>
         </form>
       </div>
     </div>
