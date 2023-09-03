@@ -29,7 +29,7 @@ const UpdateProfilePage = () => {
   
           console.log('API Response:', response.data);
 
-          const userData = response.data; // Assuming the API response contains user data
+          const userData = response.data; 
   
           // Pre-fill the form fields with the user's existing data
           setFormData({
@@ -44,7 +44,7 @@ const UpdateProfilePage = () => {
       }
   
       fetchUserData();
-    }, [authToken]); // Include authToken in the dependency array to refetch data if it changes
+    }, [authToken]); 
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -74,7 +74,7 @@ const UpdateProfilePage = () => {
     };
   
     const handleBackClick = () => {
-      router.push('/profile'); // Redirect back to profile page
+      router.push('/profile');
     };
 return (
   <div className="container mt-5">
@@ -83,7 +83,7 @@ return (
         <div className="card shadow">
           <div className="card-body">
             <h2 className="card-title">Update Profile</h2>
-            {formData.name !== undefined ? ( // Render the form only when 'name' is available
+            {formData.name !== undefined ? ( 
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">Name</label>

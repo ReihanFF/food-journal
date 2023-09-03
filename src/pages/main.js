@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import FoodList from '../components/FoodList';
-import Link from 'next/link'; // Import Link from Next.js
+import Link from 'next/link'; 
 
 const Main = () => {
   return (

@@ -38,29 +38,24 @@ const FoodList = () => {
               image.src = foodItem.imageUrl;
 
               return new Promise((resolve) => {
-                image.onload = () => {
-                  // Image loaded successfully, include this food item
+                image.onload = () => {             
                   resolve(foodItem);
                 };
 
                 image.onerror = () => {
-                  // Image URL is broken or not accessible, exclude this food item
                   resolve(null);
                 };
               });
             } else {
-              // No image URL, exclude this food item
               return null;
             }
           })
         );
 
-        // Filter out null values (items with broken image URLs)
         const validFoodItems = filteredFoodItems.filter(
           (foodItem) => foodItem !== null
         );
 
-         // Initialize the "isLiked" property for each food item based on liked foods
          const foodItemsWithLikes = validFoodItems.map((foodItem) => ({
           ...foodItem,
           isLiked: likedFoods.includes(foodItem.id),
@@ -76,10 +71,9 @@ const FoodList = () => {
   }, [authToken, likedFoods]);
 
   const handleCardClick = (foodId) => {
-    router.push(`/food/${foodId}`); // Navigate to the food detail page
+    router.push(`/food/${foodId}`); 
   };
 
-  // Function to generate star icons based on the rating
   const generateStars = (rating) => {
     const maxRating = 5;
     const filledStars = Math.round(rating);
@@ -103,7 +97,6 @@ const FoodList = () => {
     try {
       const isLiked = likedFoods.includes(foodId);
 
-      // Make a POST request to the API to like or unlike the food item
       const apiEndpoint = isLiked
         ? 'https://api-bootcamp.do.dibimbing.id/api/v1/unlike'
         : 'https://api-bootcamp.do.dibimbing.id/api/v1/like';

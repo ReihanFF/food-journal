@@ -8,7 +8,7 @@ const RegisterPage = () => {
     email: '',
     password: '',
     passwordRepeat: '',
-    role: 'admin', // Default role
+    role: 'admin', 
     profilePictureUrl: '',
     phoneNumber: '',
   });
@@ -42,7 +42,7 @@ const RegisterPage = () => {
       // Redirect to the login page after successful registration
       setTimeout(() => {
         router.push('/login');
-      }, 3000); // Redirect after 3 seconds
+      }, 3000); 
     } catch (error) {
       setError('Registration failed. Please check your input.');
     } finally {

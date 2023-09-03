@@ -35,13 +35,11 @@ const CreateFood = () => {
     e.preventDefault();
 
     try {
-      // Add headers for API key and auth token
       const headers = {
         Authorization: `Bearer ${authToken}`,
         apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
       };
 
-      // Make a POST request to the API to create a new food item
       const response = await axios.post(
         'https://api-bootcamp.do.dibimbing.id/api/v1/create-food',
         formData,
@@ -50,18 +48,15 @@ const CreateFood = () => {
 
       console.log('Food created successfully:', response.data);
 
-      // Show success message
       setSuccessMessage('Food created successfully');
 
-      // Clear the form
       setFormData({
         name: '',
         description: '',
         imageUrl: '',
-        ingredients: [], // Initialize as an empty array
+        ingredients: [], 
       });
 
-      // Hide the success message after a few seconds (e.g., 3 seconds)
       setTimeout(() => {
         setSuccessMessage('');
       }, 3000);
@@ -72,7 +67,7 @@ const CreateFood = () => {
   };
 
   const handleBackClick = () => {
-    router.push('/main'); // Redirect back to main page
+    router.push('/main'); 
   };
 
   return (
