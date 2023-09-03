@@ -31,6 +31,9 @@ const ProfilePage = () => {
         <div className="col-md-6">
           <div className="card shadow">
             <div className="card-body text-center">
+            <div className="text-center mb-3">
+      <img src="/logo.jpg" alt="Logo" width="100" height="100" />
+        </div>
               {user ? (
                 <>
                   <h2 className="card-title">{user.name}</h2>

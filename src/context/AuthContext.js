@@ -18,12 +18,13 @@ export function AuthProvider({ children }) {
 
   const login = (token) => {
     setAuthToken(token);
-    localStorage.setItem('authToken', token); 
+    localStorage.setItem('authToken', token); // Store the token in local storage
   };
 
+  // Function to log out and remove the authentication token
   const logout = () => {
     setAuthToken(null);
-    localStorage.removeItem('authToken'); 
+    localStorage.removeItem('authToken'); // Remove the token from local storage
   };
 
   return (

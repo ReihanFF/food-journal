@@ -8,7 +8,7 @@ const Main = () => {
     <Navbar>
       <div className="card p-3 mt-3">
       <div className="d-flex justify-content-between align-items-center">
-  <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'blue' }}>Main Page</div>
+  <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'blue' }}>FOOD JOURNAL</div>
   <div className="text-center">
     <img src="/logo.jpg" alt="Logo" width="100" height="100" />
   </div>

@@ -114,7 +114,7 @@ const FoodList = () => {
         {
           headers: {
             Authorization: `Bearer ${authToken}`,
-            apiKey: apiKey,
+            apiKey: 'w05KkI9AWhKxzvPFtXotUva-',
           },
         }
       );

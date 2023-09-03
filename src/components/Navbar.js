@@ -20,7 +20,7 @@ const Navbar = ({ children }) => {
     // Clear the token from local storage
     localStorage.removeItem('authToken');
 
-    // setAuthToken(null);
+    setAuthToken(null);
 
     router.push('/login');
   } catch (error) {
