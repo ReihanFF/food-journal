@@ -90,7 +90,7 @@ const LoginCard = () => {
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
           <p className="mt-3">
-            Don't have an account?{' '}
+            Do not have an account?{' '}
             <Link href="/register">Register here</Link>
           </p>
         </form>
